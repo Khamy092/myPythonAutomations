@@ -31,3 +31,20 @@ INFS2043 = [INFS2045] ; INFS4020 = [INFS1025]
 courseCoReq = []
 CourseA = INFS2045 = [INFS2044]
 CourseB = INFS2043 = [INFS2041]
+
+studyPeriods = [2, 5]
+
+coursesToEnroll = []
+
+def findCoursesToEnroll():
+
+    global coursesToEnroll
+    
+    for course in courseCodes:
+        if course not in enrolledCourses:
+            if course in courseCoReq:
+                if course is None or course in enrolledCourses:
+                    if course in studyPeriods:
+                        coursesToEnroll.append(course)
+                else:
+                    print("You need to enroll in the pre-requisite course first")
