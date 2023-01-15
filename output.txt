@@ -1,0 +1,1 @@
+Hostname: TaqiOS: Windows 10ISP: Taqi.wireless.unisa.edu.auLocation: Adelaide, South AustraliaIP: 10.233.8.115Public IP: 130.220.8.147Country: AUTimezone: Australia/AdelaideCoordinates: -34.9287,138.5986Organization: AS7575 Australian Academic and Research Network (AARNet)Postal: 5000
