@@ -62,6 +62,7 @@ def checkPreRequisites(course): # function to check if the pre-requisites are me
     if course in preRequisites:
         if preRequisites[course] in passedCourses:
             print("✓ Pre-requisite met")
+            print()
             return True
         else:
             print("✕ Pre-requisite not met")
@@ -71,6 +72,7 @@ def checkCoRequisites(course): # function to check if the co-requisites are met
     if course in coRequisites:
         if coRequisites[course] in coursesToEnroll:
             print("✓ Co-requisite met")
+            print()
             return True
         else:
             print("✕ Co-requisite not met")
@@ -79,15 +81,20 @@ def checkCoRequisites(course): # function to check if the co-requisites are met
         return True
 
 def checkStudyPeriod(course): # function to check if the course is available in the study period
-    study_period = int(input("Enter the study period: "))
+    study_period = int(input("Enter the study period (2 or 5): "))
+    while study_period != 2 and study_period != 5:
+        study_period = int(input("Please enter a valid study period: "))
+        print()
     if course in study_periods[study_period]:
         print("✓ Course is available in study period", study_period)
+        print()
         return True
     else:
         print("✕ Course is not available in study period", study_period)
         return False
 
 def Enrollments():
+    print()
     userInput = input("Enter the course code: ") # user input is the course code asked for
 
     if userInput.islower(): # if the user input is in lower case, it will be converted to upper case as per the course code format
@@ -95,10 +102,17 @@ def Enrollments():
 
     while userInput not in courseCodes:
         print("Course not found")
+        print()
         userInput = input("Please enter a valid course code: ")
+
     if userInput in courseCodes:
+
         if userInput in passedCourses:
             print("You have already passed ", userInput)
+
+        elif userInput in coursesToEnroll:
+            print("You have already added ", userInput, "to the list")
+
         else:
             if checkPreRequisites(userInput) and checkCoRequisites(userInput) and checkStudyPeriod(userInput):
                 coursesToEnroll.append(userInput)
@@ -117,6 +131,7 @@ while userExits != True:
     Enrollments()
 
     userExits = input("Do you want to continue? (Y/N): ")
+    print()
     while userExits != "Y" and userExits != "N" and userExits != "y" and userExits != "n":
         userExits = input("Please enter Y or N: ")
 
@@ -126,12 +141,17 @@ while userExits != True:
 
 print("Enroll in the following courses: ")
 print("=================================")
+
 for course in coursesToEnroll:
-    number = 0
-    print(number,"->", course)
-    number += 1
+    number = 1
+    while number < len(coursesToEnroll):
+        print(number,"->", course)
+        number += 1
 
 print("=================================")
+
+print()
 print("Good Luck!")
 print()
+
 input("PressT Enter to close!")
