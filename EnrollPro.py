@@ -15,6 +15,34 @@ courseCodes = ['INFT 1016', 'COMP 1039', 'INFT 1012', 'INFT 1030', 'INFS 1025', 
                'COMP 1046', 'INFS 2044', 'INFS 2045', 'INFS 3090', 'INFS 2041', 'INFS 2043', 'INFS 4020',
                'INFT 3033', 'COMP 2035', 'COMP 2012', 'INFS 2011', 'ELECTIVE', 'INFT 2064', 'COMP 3023',
                'COMP 2019', 'INFT 3043', 'ICT PROJECT']
+
+
+courseNames = {
+    'INFT 1016': 'Information Technology Fundamentals',
+    'COMP 1039': 'Problem Solving and Programming',
+    'INFT 1012': 'Networking Fundamentals',
+    'INFT 1030': 'Design Thinking Studio',
+    'INFS 1025': 'Data Driven Web Technologies',
+    'INFS 1026': 'System Requirements & User Experience',
+    'INFT 1031': 'System Requirements Studio',
+    'COMP 1046': 'Object Oriented Programming',
+    'INFS 2044': 'System Design & Realisation',
+    'INFS 2045': 'System Design Studio',
+    'INFS 3090': 'Security Foundations',
+    'INFS 2041': 'Agile Development & Governance',
+    'INFS 2043': 'Project Studio',
+    'INFS 4020': 'Big Data Concepts',
+    'INFT 3033': 'IOS Enterprise Development',
+    'COMP 2035': 'Operating Systems & Tool Chains',
+    'COMP 2012': 'Data Structures Essentials',
+    'INFS 2011': 'Database For The Enterprise',
+    'ELECTIVE': 'Elective',
+    'INFT 2064': 'Web Technologies',
+    'COMP 3023': 'Design Patterns with C++',
+    'COMP 2019': 'AI & Machine Learning',
+    'INFT 3043': 'Cloud & Concurrent Programming',
+    'ICT PROJECT': 'ICT Project'
+}
  
 # list of courses I have already enrolled & passed:
 
@@ -112,7 +140,7 @@ def Enrollments():
         userInput = userInput.upper()
 
     while userInput not in courseCodes:
-        print("     Course not found")
+        print("     Δ Course not found")
         print()
 
         userInput = input("     Please enter a valid course code: ")
@@ -121,10 +149,10 @@ def Enrollments():
     if userInput in courseCodes:
 
         if userInput in passedCourses:
-            print("     You have already passed ", userInput)
+            print("     ✓ You have already passed ", userInput)
 
         elif userInput in coursesToEnroll:
-            print("     You have already added ", userInput, "to the list.")
+            print("     ✓ You have already added ", userInput, "to the list.")
 
         else:
             if checkPreRequisites(userInput) and checkCoRequisites(userInput) and checkStudyPeriod(userInput):
@@ -162,20 +190,29 @@ while userExits != True:
 
     if userExits == "N" or userExits == "n":
         userExits = True
-        pass
+        
+        if len(coursesToEnroll) == 0:
+            print()
+            print("     You have not added any courses to the list 🤷")
+            print()
+            input("     Press enter to close!")
+            break   
+        else:
+            print("     Enroll in the following courses: ")
+            print("     =================================")
+            print()
+
+            # Outputting the list of courses in a nice square
+
+            print(colored("     +" + "-"*48 + "+", "yellow"))
+
+            for i, course in enumerate(coursesToEnroll):
+                print(colored("     | {:<47}|".format(str(i+1) + "-> " + courseNames[course] + str(" (") + course + str(")") , "white")))
+            print(colored("     +" + "-"*48 + "+", "yellow"))
 
 
-print("     Enroll in the following courses: ")
-print("     =================================")
-print()
-# Outputting the list of courses in a nice square
-print(colored("     +" + "-"*40 + "+", "yellow"))
-for i, course in enumerate(coursesToEnroll):
-    print(colored("     |{:^40}|".format(str(i+1) + "-> " + course), "white"))
-print(colored("     +" + "-"*40 + "+", "yellow"))
+            print()
+            print("     Good Luck 😊")
+            print()
 
-print()
-print("     Good Luck!")
-print()
-
-input("     Press enter to close!")
+            input("     Press enter to close!")
