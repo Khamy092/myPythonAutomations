@@ -5,6 +5,8 @@
 # Author: Taqi Khaliqdad
 
 from tqdm import tqdm
+from termcolor import colored
+
 import time
 
 # list of all the courses I need to enroll in:
@@ -13,7 +15,7 @@ courseCodes = ['INFT 1016', 'COMP 1039', 'INFT 1012', 'INFT 1030', 'INFS 1025', 
                'COMP 1046', 'INFS 2044', 'INFS 2045', 'INFS 3090', 'INFS 2041', 'INFS 2043', 'INFS 4020',
                'INFT 3033', 'COMP 2035', 'COMP 2012', 'INFS 2011', 'ELECTIVE', 'INFT 2064', 'COMP 3023',
                'COMP 2019', 'INFT 3043', 'ICT PROJECT']
-
+ 
 # list of courses I have already enrolled & passed:
 
 passedCourses = ['INFT 1016', 'COMP 1039', 'INFT 1012', 'INFT 1030', 'INFS 1025', 'INFS 1026', 'INFT 1031']
@@ -62,101 +64,118 @@ coursesToEnroll = []
 def checkPreRequisites(course): # function to check if the pre-requisites are met
     if course in preRequisites:
         if preRequisites[course] in passedCourses:
-            print("✓ Pre-requisite met")
+            print()
+            print("     ✓ Pre-requisite met")
             print()
             return True
         else:
-            print("✕ Pre-requisite not met")
+            print("     ✕ Pre-requisite not met")
             return False
 
 def checkCoRequisites(course): # function to check if the co-requisites are met
     if course in coRequisites:
         if coRequisites[course] in coursesToEnroll:
-            print("✓ Co-requisite met")
+            print("     ✓ Co-requisite met")
             print()
             return True
         else:
-            print("✕ Co-requisite not met")
+            print("     ✕ Co-requisite not met")
+            print("     Δ You need to enroll in ", coRequisites[course], "first.")
+            print()
             return False
     else:
         return True
 
 def checkStudyPeriod(course): # function to check if the course is available in the study period
 
-    study_period = int(input("Enter the study period (2 or 5): "))
+    study_period = int(input("     Enter the study period (2 or 5): "))
 
     while study_period != 2 and study_period != 5:
-        study_period = int(input("Please enter a valid study period: "))
+        study_period = int(input("     Please enter a valid study period: "))
         print()
 
     if course in study_periods[study_period]:
-        print("✓ Course is available in study period", study_period)
+        print("     ✓ Course is available in study period", study_period)
         print()
         return True
 
     else:
-        print("✕ Course is not available in study period", study_period)
+        print("     ✕ Course is not available in study period", study_period)
         return False
 
 def Enrollments():
 
     print() # prints a blank line
-    userInput = input("Enter the course code: ") # user input is the course code asked for
+    userInput = input("     Enter the course code: ") # user input is the course code asked for
 
     if userInput.islower(): # if the user input is in lower case, it will be converted to upper case as per the course code format
         userInput = userInput.upper()
 
     while userInput not in courseCodes:
-        print("Course not found")
+        print("     Course not found")
         print()
-        userInput = input("Please enter a valid course code: ")
+
+        userInput = input("     Please enter a valid course code: ")
+        userInput = userInput.upper()
 
     if userInput in courseCodes:
 
         if userInput in passedCourses:
-            print("You have already passed ", userInput)
+            print("     You have already passed ", userInput)
 
         elif userInput in coursesToEnroll:
-            print("You have already added ", userInput, "to the list")
+            print("     You have already added ", userInput, "to the list.")
 
         else:
             if checkPreRequisites(userInput) and checkCoRequisites(userInput) and checkStudyPeriod(userInput):
                 coursesToEnroll.append(userInput)
                 for i in tqdm (range (101),
-                    desc="Adding…",
+                    desc="     Adding…",
                     ascii=False, ncols=75):
                     time.sleep(0.01)
-                print("✓ ", userInput,  "added to the list")
+                print()
+                print("     ✓ ", userInput,  "added to the list.")
+                print()
             else:
-                print("✕ Course not added to the list")
+                print("     ✕ Course not added to the list.")
+                print()
 
+name = "EnrollPro"
+version = "1.0"
+
+print()
+print(colored("*"*50, "blue"))
+print(colored("{:^50}".format("Welcome to the {} program".format(name)), "green"))
+print(colored("{:^50}".format("Version: {}".format(version)), "green"))
+print(colored("*"*50, "blue"))
+print()
 
 userExits = False
 while userExits != True:
 
     Enrollments()
 
-    userExits = input("Do you want to continue? (Y/N): ")
+    userExits = input("     Do you want to continue? (Y/N): ")
     print()
     while userExits != "Y" and userExits != "N" and userExits != "y" and userExits != "n":
-        userExits = input("Please enter Y or N: ")
+        userExits = input("     Please enter Y or N: ")
 
     if userExits == "N" or userExits == "n":
         userExits = True
         pass
 
-print("Enroll in the following courses: ")
-print("=================================")
 
-for course in coursesToEnroll:
-    number = 1
-    print(number,"->", course)
-    number += 1
-
-print("=================================")
+print("     Enroll in the following courses: ")
+print("     =================================")
+print()
+# Outputting the list of courses in a nice square
+print(colored("     +" + "-"*40 + "+", "yellow"))
+for i, course in enumerate(coursesToEnroll):
+    print(colored("     |{:^40}|".format(str(i+1) + "-> " + course), "white"))
+print(colored("     +" + "-"*40 + "+", "yellow"))
 
 print()
-print("Good Luck!")
+print("     Good Luck!")
 print()
 
-input("Press enter to close!")
+input("     Press enter to close!")
