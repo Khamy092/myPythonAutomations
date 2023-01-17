@@ -16,7 +16,7 @@ courseCodes = ['INFT 1016', 'COMP 1039', 'INFT 1012', 'INFT 1030', 'INFS 1025', 
                'INFT 3033', 'COMP 2035', 'COMP 2012', 'INFS 2011', 'ELECTIVE', 'INFT 2064', 'COMP 3023',
                'COMP 2019', 'INFT 3043', 'ICT PROJECT']
 
-
+# a dictionary of course codes and their associated names:
 courseNames = {
     'INFT 1016': 'Information Technology Fundamentals',
     'COMP 1039': 'Problem Solving and Programming',
@@ -62,7 +62,7 @@ preRequisites = {
         "COMP 2012": "COMP 1046",
         "INFS 2011": "INFS 1025",
         "INFT 2064": "INFS 1025" and "COMP 1012",
-        "COMP 3023": "COMP 2012",
+        "COMP 3023": "COMP 2012",  
         "COMP 2019": "COMP1046",
         "INFT 3043": "INFS 1025" and "COMP 2012",
         "ICTPROJECT": 72
@@ -134,7 +134,15 @@ def checkStudyPeriod(course): # function to check if the course is available in 
 def Enrollments():
 
     print() # prints a blank line
+    # print all the courses in the list except the ones already passed  
+    print("     Available courses: ")
+    for course in courseCodes:
+        if course not in passedCourses:
+            print("     ", course)
+            
+    print()
     userInput = input("     Enter the course code: ") # user input is the course code asked for
+    
 
     if userInput.islower(): # if the user input is in lower case, it will be converted to upper case as per the course code format
         userInput = userInput.upper()
