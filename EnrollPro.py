@@ -91,7 +91,7 @@ coursesToEnroll = []
 
 def checkPreRequisites(course): # function to check if the pre-requisites are met
     if course in preRequisites:
-        if preRequisites[course] in passedCourses:
+        if preRequisites[course] in passedCourses or preRequisites[course] in coursesToEnroll:
             print()
             print("     ✓ Pre-requisite met")
             print()
