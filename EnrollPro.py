@@ -48,7 +48,7 @@ courseNames = {
  
 # list of courses I have already enrolled & passed:
 
-passedCourses = ['INFT 1016', 'COMP 1039', 'INFT 1012', 'INFT 1030', 'INFS 1025', 'INFS 1026', 'INFT 1031']
+passedCourses = set(['INFT 1016', 'COMP 1039', 'INFT 1012', 'INFT 1030', 'INFS 1025', 'INFS 1026', 'INFT 1031'])
 
 # courses with pre-requisites:
 preRequisites = {
@@ -139,26 +139,24 @@ def checkStudyPeriod(course): # function to check if the course is available in 
 
 def Enrollments():
 
-    print() # prints a blank line
     # print all the courses in the list except the ones already passed  
     print("     Available courses: ")
     for course in courseCodes:
         if course not in passedCourses:
-            print("    ", course + ":", courseNames[course])
+            if course not in coursesToEnroll:
+                print("    ", course + ":", courseNames[course])
             
     print()
     userInput = input("     Enter the course code: ") # user input is the course code asked for
     
 
-    if userInput.islower(): # if the user input is in lower case, it will be converted to upper case as per the course code format
+    while userInput.islower(): # if the user input is in lower case, it will be converted to upper case as per the course code format
         userInput = userInput.upper()
 
     while userInput not in courseCodes:
         print("     Δ Course not found")
         print()
-
         userInput = input("     Please enter a valid course code: ")
-        userInput = userInput.upper()
 
     if userInput in courseCodes:
 
@@ -174,9 +172,10 @@ def Enrollments():
 
                 # the following code is to show a progress bar just for fun
 
-                for i in tqdm (range (101),
-                    desc="     Adding…",
-                    ascii=False, ncols=75):
+                i = 0
+                while i < 100:
+                    i += 1
+                    print("     Adding...", i, "%", end="\r")
                     time.sleep(0.01)
 
                 print()
@@ -234,3 +233,5 @@ while userExits != True:
             print()
 
             input("     Press enter to close!")
+
+            
