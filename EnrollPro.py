@@ -138,7 +138,7 @@ def Enrollments():
     print("     Available courses: ")
     for course in courseCodes:
         if course not in passedCourses:
-            print("     ", course)
+            print("    ", course + ":", courseNames[course])
             
     print()
     userInput = input("     Enter the course code: ") # user input is the course code asked for
