@@ -4,9 +4,9 @@
 # Date: 15/01/2022
 # Author: Taqi Khaliqdad
 
+# external modules used:
 from tqdm import tqdm
 from termcolor import colored
-
 import time
 
 # list of all the courses I need to enroll in:
@@ -77,9 +77,13 @@ coRequisites = {
 
 # Courses in each study periods:
 study_periods = {
+    # courses available in study period 2:
+
     2: ['INFT 1016', 'COMP 1039', 'INFT 1012', 'INFT 1030', 'INFS 1025', 'INFS 1026', 'INFT 1031',
             'COMP 1046', 'INFS 2044', 'INFS 2045', 'INFS 3090', 'INFS 4020', 'COMP 2035', 'COMP 2012',
             'INFS 2011', 'ELECTIVE', 'COMP 3023', 'ICT PROJECT'],
+    
+    # courses available in study period 5:
     
     5: ['INFS 2041', 'INFS 2043', 'INFT 3033', 'INFT 2064', 'COMP 2019', 'INFT 3043']
 }
