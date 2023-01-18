@@ -165,10 +165,14 @@ def Enrollments():
         else:
             if checkPreRequisites(userInput) and checkCoRequisites(userInput) and checkStudyPeriod(userInput):
                 coursesToEnroll.append(userInput)
+
+                # the following code is to show a progress bar just for fun
+
                 for i in tqdm (range (101),
                     desc="     Adding…",
                     ascii=False, ncols=75):
                     time.sleep(0.01)
+
                 print()
                 print("     ✓ ", userInput,  "added to the list.")
                 print()
