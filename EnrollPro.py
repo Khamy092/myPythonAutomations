@@ -1,6 +1,8 @@
 
 # Name: EnrollPro
-# Description: A simple program that find the courses I need to enroll in
+# Description: A simple program that find the courses I need to enroll in. The program also checks if the pre-requisites and co-requisites are met.
+# it also checks if the course is available in the current study period.
+# Version: 1.0
 # Date: 15/01/2022
 # Author: Taqi Khaliqdad
 
@@ -36,7 +38,7 @@ courseNames = {
     'COMP 2035': 'Operating Systems & Tool Chains',
     'COMP 2012': 'Data Structures Essentials',
     'INFS 2011': 'Database For The Enterprise',
-    'ELECTIVE': 'Elective',
+    'ELECTIVE':  'Elective',
     'INFT 2064': 'Web Technologies',
     'COMP 3023': 'Design Patterns with C++',
     'COMP 2019': 'AI & Machine Learning',
@@ -84,7 +86,7 @@ study_periods = {
             'INFS 2011', 'ELECTIVE', 'COMP 3023', 'ICT PROJECT'],
     
     # courses available in study period 5:
-    
+
     5: ['INFS 2041', 'INFS 2043', 'INFT 3033', 'INFT 2064', 'COMP 2019', 'INFT 3043']
 }
 
