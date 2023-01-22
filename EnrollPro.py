@@ -150,16 +150,16 @@ def Enrollments():
     userInput = input("     Enter the course code: ") # user input is the course code asked for
     
 
-    while userInput.islower(): # if the user input is in lower case, it will be converted to upper case as per the course code format
+    if userInput.islower(): # if the user input is in lower case, it will be converted to upper case as per the course code format
         userInput = userInput.upper()
 
     while userInput not in courseCodes:
         print("     Δ Course not found")
         print()
         userInput = input("     Please enter a valid course code: ")
+        userInput = userInput.upper()
 
     if userInput in courseCodes:
-
         if userInput in passedCourses:
             print("     ✓ You have already passed ", userInput)
 
