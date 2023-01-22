@@ -227,11 +227,27 @@ while userExits != True:
                 print(colored("     | {:<47}|".format(str(i+1) + "-> " + courseNames[course] + str(" (") + course + str(")") , "white")))
             print(colored("     +" + "-"*48 + "+", "yellow"))
 
+            askUser = input("     Do you want to save the list to the file? (Y/N): ")
+            if askUser == "Y" or askUser == "y":
+                print()
 
+                file = open("EnrolledCourses.txt", "w")
+                for course in coursesToEnroll:
+                    file.write(course + "\n")
+                file.close()
+
+                print("     List saved successfully!")
+                print()
+
+            else:
+                print()
+                print("     No Worries!")
             print()
             print("     Good Luck 😊")
             print()
 
             input("     Press enter to close!")
 
-            
+
+
+
