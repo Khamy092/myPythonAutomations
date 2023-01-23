@@ -10,6 +10,7 @@
 from tqdm import tqdm
 from termcolor import colored
 import time
+import datetime
 
 # list of all the courses I need to enroll in:
 
@@ -187,8 +188,6 @@ def Enrollments():
 
 name = "EnrollPro"
 version = "1.0"
-
-print()
 print(colored("*"*50, "blue"))
 print(colored("{:^50}".format("Welcome to the {} program".format(name)), "green"))
 print(colored("{:^50}".format("Version: {}".format(version)), "green"))
@@ -230,24 +229,14 @@ while userExits != True:
             askUser = input("     Do you want to save the list to the file? (Y/N): ")
             if askUser == "Y" or askUser == "y":
                 print()
-
-                file = open("EnrolledCourses.txt", "w")
+                TextFile = open("EnrolledCourses.txt", "w")
+                TextFile.write("Enroll in: " + "\n")
+                TextFile.write("===========" + "\n")
+                index = 1
                 for course in coursesToEnroll:
-                    file.write(course + "\n")
-                file.close()
+                    TextFile.write(str(index) + ". " + courseNames[course] + " (" + course + ")" + "\n")
+                TextFile.close()
 
                 print("     List saved successfully!")
                 print()
-
-            else:
-                print()
-                print("     No Worries!")
-            print()
-            print("     Good Luck 😊")
-            print()
-
-            input("     Press enter to close!")
-
-
-
-
+                input("     Press enter to close!")
