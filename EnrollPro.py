@@ -138,7 +138,7 @@ def checkStudyPeriod(course): # function to check if the course is available in 
         print("     ✕ Course is not available in study period", study_period)
         return False
 
-def Enrollments():
+def Enrollments(): # function to enroll in courses
 
     # print all the courses in the list except the ones already passed  
     print("     Available courses: ")

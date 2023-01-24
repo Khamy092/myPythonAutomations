@@ -15,11 +15,6 @@ os_details = platform.uname()
 isp = socket.gethostbyaddr(get_ip_address())[0]
 location = requests.get('http://ipinfo.io/json').json()
 
-# 
-
-
-
-
 
 # write to file and put a line break after each line 
 with open('output.txt', 'w') as f:
