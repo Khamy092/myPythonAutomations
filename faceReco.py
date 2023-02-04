@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 
+# note: you have to first have the images in the folder
+
 face_names = {
     "face_68.jpg": "Taqi",
 }
