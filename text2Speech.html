@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text to Speech</title>
+    <style>
+      body {
+        background-color: #f1f5f8; ;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: #082032;
+        font-family: sans-serif;
+      }
+
+      input[type="text"],
+      input[type="range"] {
+        font-size: 50px;
+        background-color: #082032;
+        color: white;
+        padding: 10px;
+        margin: 20px 0;
+        width: 50%;
+        text-align: center;
+      }
+
+      button {
+        font-size: 44px;
+        padding: 10px 20px;
+        margin-top: 20px;
+        background-color: #053860;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+        button:hover {
+            background-color: rgb(31, 30, 30);
+            color: white;
+            /* add transition */    
+            transition: all 0.3s ease-in-out;
+            /* add box-shadow */    
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+        }
+    </style>
+    <script>
+      function pronounceWord() {
+        var word = document.getElementById("word").value;
+        var speed = document.getElementById("speed").value;
+        var utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = "en-US";
+        utterance.rate = speed;
+        window.speechSynthesis.speak(utterance);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Hi Gulbakht, Please type something.</h1>
+    <input type="text" id="word" placeholder="type here..." />
+    <input type="range" id="speed" min="0" max="2" step="0.1" value="1" />
+    <button id="pronounce" onclick="pronounceWord()">Pronounce</button>
+  </body>
+</html>
